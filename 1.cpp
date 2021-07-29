@@ -3,7 +3,6 @@
 using namespace std;
 
 HWND twid; // target window handle
-//ofstream fi;
 
 extern "C"
 {
@@ -37,10 +36,6 @@ LRESULT HookProcKeyboard(int nCode, WPARAM wParam, LPARAM lParam){
     }else{
         PostMessage(twid, 256, wParam, lParam);
     }
-    //if(!fi.good()){
-    //    fi.open("C:\\Users\\Administrator\\Desktop\\1.log");
-    //}
-    //fi<<nCode<<"|"<<wParam<<"|"<<lParam<<endl;
     return rtn;
 }
 
@@ -48,14 +43,10 @@ LRESULT HookProcMouse(int nCode, WPARAM wParam, LPARAM lParam){
     LRESULT rtn = CallNextHookEx(NULL, nCode, wParam, lParam);
     MOUSEHOOKSTRUCTEX* mouse = (MOUSEHOOKSTRUCTEX*)lParam;
     if(wParam == 522){
-        PostMessage(twid, wParam, MAKEWPARAM(120, GET_WHEEL_DELTA_WPARAM(mouse->mouseData)), MAKELPARAM(mouse->pt.x, mouse->pt.y));
+        PostMessage(twid, wParam, MAKEWPARAM(0, GET_WHEEL_DELTA_WPARAM(mouse->mouseData)), MAKELPARAM(mouse->pt.x, mouse->pt.y));
     }else{
         PostMessage(twid, wParam, 0, MAKELPARAM(mouse->pt.x, mouse->pt.y));
     }
-    //if(!fi){
-    //    fi.open("C:\\Users\\Administrator\\Desktop\\1.log");
-    //}
-    //fi<<nCode<<"|"<<wParam<<"|"<<lParam<<endl;
     return rtn;
 }
 
