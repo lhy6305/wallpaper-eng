@@ -6,6 +6,3 @@ Use hooks to make the wallpaper window interactable.
 
 # Notice
 The hooks will be unload automaticlly if you close the **setwindow.exe** window. Then the wallpaper window will be **NOT** interactable.
-
-# Known issues  
-Cannot forward mouse wheel events.
